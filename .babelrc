@@ -1,0 +1,19 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": "> 1%, not dead, not ie <= 8",
+      }
+    ]
+  ],
+  // https://medium.com/@hsuehyungtan/babel-%E7%AD%86%E8%A8%98-7-7-0-5274be4eed93
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": 3
+      }
+    ]
+  ]
+}

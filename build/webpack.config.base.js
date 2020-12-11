@@ -7,12 +7,12 @@ const webpackConfig = merge({
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
-    filename: 'ge-test.js',
+    filename: 'ku-karma-test.js',
     // Not used in dev but WebpackDevServer crashes without it:
     path: path.join(process.cwd(), 'dist'),
     // The URL that app is served from. We use "/" in development.
     publicPath: '/',
-    library: 'GeTest',
+    library: 'KuKarmaTest',
     libraryTarget: 'umd',
     libraryExport: 'default',
     // To make UMD build available on both browsers and Node.js, set output.globalObject option to 'this'.

@@ -2,7 +2,7 @@
   "name": "karma-test",
   "version": "1.0.0",
   "description": "For karma test",
-  "main": "dist/ge-test.js",
+  "main": "dist/ku-karma-test.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.config.dev.js",
     "build": "cross-env NODE_ENV=production webpack --progress --config ./build/webpack.config.prod.js",

@@ -1,9 +1,8 @@
-const GeDesign = {
+const KuKarmaDesign = {
   test: 'test'
 }
 
-console.error(GeDesign);
-// window.GeDesignTest = GeDesignTest
+console.error(KuKarmaDesign);
 
 export default function testExport () {
   console.error('13123----ffffasdfasd');

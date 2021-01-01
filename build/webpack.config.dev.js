@@ -29,6 +29,22 @@ const port = process.env.PORT || 9800
 
 const webpackConfig = merge(webpackBaseConfig, {
   mode: env,
+  output: {
+    // This does not produce a real file. It's just the virtual path that is
+    // served by WebpackDevServer in development. This is the JS bundle
+    // containing code from all our entry points, and the Webpack runtime.
+    filename: 'ku-karma-test.js',
+    // Not used in dev but WebpackDevServer crashes without it:
+    path: path.join(process.cwd(), 'dist'),
+    // The URL that app is served from. We use "/" in development.
+    publicPath: '/',
+    library: 'KuKarmaTest',
+    libraryTarget: 'umd',
+    libraryExport: 'default',
+    // To make UMD build available on both browsers and Node.js, set output.globalObject option to 'this'.
+    // https://webpack.js.org/configuration/output/#outputglobalobject
+    globalObject: 'this',
+  },
   // https://webpack.js.org/configuration/dev-server/
   devServer: {
     // https://github.com/webpack/webpack-dev-server/issues/2484

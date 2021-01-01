@@ -1,11 +1,23 @@
 const path = require('path')
+const webpack = require('webpack')
 const merge = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpackStyleConfig = require('./webpack.config.style.js')
 
-const webpackConfig = merge({
+// Paths to be used for webpack configuration
+const paths = {
+  appSrc: path.join(process.cwd(), 'src'),
+  appIndex: path.join(process.cwd(), 'src', 'index.js'),
+  appBuild: path.join(process.cwd(), 'dist'),
+  public: '/',
+  templateHtml: path.join(process.cwd(), 'public', 'index.html'),
+  appTest: path.join(process.cwd(), 'test'),
+}
+
+const webpackConfig = merge(webpackStyleConfig, {
   resolve: {
     alias: {
-      '~': path.join(process.cwd(), 'src'),
+      '~': path.join(process.cwd()),
     },
   },
   module: {
@@ -46,6 +58,19 @@ const webpackConfig = merge({
       },
     ],
   },
-}, webpackStyleConfig)
+  plugins: [
+    // Makes environment variables available to the JS code, fallback to 'production'
+    new webpack.DefinePlugin({
+      TEST: JSON.stringify(process.env.NODE_ENV === 'test'),
+    }),
+    // Generates an `index.html` file with the <script> injected.
+    new HtmlWebpackPlugin({
+      template: paths.templateHtml,
+      inject: true,
+      hash: true,
+    }),
+  ],
+  devtool: 'cheap-module-source-map',
+})
 
 module.exports = webpackConfig
